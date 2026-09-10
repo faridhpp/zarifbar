@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone, ShieldCheck, ChevronDown, UserCheck, Sun, Moon } from 'lucide-react';
 
 interface HeaderProps {
@@ -59,7 +59,7 @@ export default function Header({ currentPath, onNavigate, phone, logoUrl, taglin
                <span className="font-black text-xs md:text-sm text-purple-600">LOGO</span>
              )}
           </div>
-          <div>
+          <div className="hidden md:block">
             <span className="text-sm md:text-xl lg:text-2xl font-black text-gray-900 tracking-tight block whitespace-nowrap">
               اسپاب چی <span className="hidden md:inline-block text-purple-600 font-medium text-xs md:text-sm">{tagline || 'اتوبار مدرن'}</span>
             </span>
