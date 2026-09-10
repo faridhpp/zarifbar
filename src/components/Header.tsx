@@ -52,7 +52,7 @@ export default function Header({ currentPath, onNavigate, phone, logoUrl, taglin
           onClick={() => handleLinkClick('/')} 
           className="flex items-center gap-2 md:gap-3 cursor-pointer group shrink-0"
         >
-          <div className="h-8 md:h-10 shrink-0">
+          <div className="h-11 sm:h-12 md:h-10 lg:h-11 shrink-0">
              {logoUrl ? (
                <img src={logoUrl} alt="اسپاب چی" className="h-full object-contain" referrerPolicy="no-referrer" />
              ) : (
