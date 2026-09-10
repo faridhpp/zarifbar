@@ -504,6 +504,15 @@ export default function ServiceLanding({ slug, onBackToServices, onOpenEstimator
         ? { ...item, title: "بسته‌بندی و حمل با دقت", desc: "بسته‌بندی و جابه‌جایی با تمرکز بر دقت، نظم و کاهش احتمال آسیب به وسایل انجام می‌شود.", badge: "دقت در جابه‌جایی" }
         : item);
     }
+    const sanitizeImageUrl = (url?: string) => {
+      if (!url) return '';
+      const value = String(url).trim();
+      if (/unsplash\.com/i.test(value)) return '';
+      return value;
+    };
+    data.heroImage = sanitizeImageUrl(data.heroImage);
+    data.fullStoryImage = sanitizeImageUrl(data.fullStoryImage);
+    data.materials = data.materials.map((item) => ({ ...item, image: sanitizeImageUrl(item.image) }));
     const activeVideoUrl = loadedVideoUrl || data.videoUrl;
     const pageName = slug === 'packing' 
       ? 'بسته‌بندی حرفه‌ای اثاثیه' 
