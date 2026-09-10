@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Service } from '../types';
 import { 
   Package, Users, Truck, Warehouse, CheckCircle, ArrowRight, Phone, 
@@ -56,7 +56,7 @@ export const DEFAULT_PACKING_DATA = {
     },
     {
       title: "صحیح و سالم سفر کنید",
-      desc: "99درصد از مشتریان ما ،به صورت رایگان بیمه شده اند.",
+      desc: "بسته‌بندی و جابه‌جایی با تمرکز بر دقت، نظم و کاهش احتمال آسیب به وسایل انجام می‌شود.",
       image: "",
       badge: ""
     },
@@ -153,8 +153,8 @@ export const DEFAULT_TRANSPORT_DATA = {
       badge: "۱۰۰٪ ضد آب و گرد و غبار"
     }
   ],
-  fullStoryTitle: "وانت بار تلفنی و نیسان بار اسپاب چی",
-  fullStoryDesc: "حمل بار سبک و نیمه‌سنگین نیازمند چابکی و دقت عمل بالاست. اگر نیاز به حمل یک یا چند قلم بار دارید، با پرداخت نیمی از هزینه کامیون‌های اسباب‌کشی می‌توانید از سرویس وانت و نیسان تلفنی ما برخوردار شوید. خودروهای ما همراه با رانندگانی ماهر و پتوهای مخمل مخصوص ضربه‌گیر، بار شما را به کمال ایمنی جابجا می‌نمایند. وقت‌شناسی بالا و حضور کمتر از ربع ساعت از ویژگی‌های بارز اتوبار اسپاب چی است.",
+  fullStoryTitle: "اسباب‌کشی، وانت بار و نیسان بار اسپاب چی",
+  fullStoryDesc: "اسپاب چی خدمات اسباب‌کشی و حمل اثاثیه منزل را در کنار سرویس وانت بار و نیسان بار برای بارهای سبک و نیمه‌سنگین ارائه می‌دهد. متناسب با حجم بار و نوع جابه‌جایی، خودروی مناسب و نیروی موردنیاز هماهنگ می‌شود تا اثاثیه و بار با دقت و نظم جابه‌جا شوند. برای هماهنگی اسباب‌کشی، حمل اثاثیه، وانت یا نیسان می‌توانید مستقیماً با اسپاب چی تماس بگیرید.",
   fullStoryImage: "",
   topics: [
     {
@@ -167,7 +167,7 @@ export const DEFAULT_TRANSPORT_DATA = {
     },
     {
       title: "",
-      desc: "جهت آسایش خاطر بدون تزلزل شما عزیزان، بیش از ۹۹ درصد از خدمات حمل و ترابری سبک ما به صورت کاملاً رایگان تحت بیمه کالا ثبت می‌گردند."
+      desc: "در تمام مراحل حمل، تلاش تیم اسپاب چی بر جابه‌جایی منظم و با دقت اثاثیه و بار و انتخاب خودروی متناسب با نوع بار است."
     },
     {
       title: "رزرو هماهنگ و تلفنی ",
@@ -208,7 +208,7 @@ export const DEFAULT_STORAGE_DATA = {
     },
     {
       title: "",
-      desc: "کلیه اموال و اثاثیه منزل شما بر اساس قرارداد رسمی شرکت تحت پوشش بیمه دولتی کامل قرار می‌گیرند."
+      desc: "شرایط نگهداری و جزئیات خدمات انبار پیش از تحویل وسایل با مشتری هماهنگ و شفاف‌سازی می‌شود."
     }
   ],
   materialsTitle: "بخش‌ها و استانداردهای فیزیکی انبارها",
@@ -486,6 +486,24 @@ export default function ServiceLanding({ slug, onBackToServices, onOpenEstimator
       : (slug === 'storage' 
         ? storageData 
         : (slug === 'transport' ? transportData : workersData));
+    if (slug === 'transport') {
+      data.fullStoryTitle = "اسباب‌کشی، وانت بار و نیسان بار اسپاب چی";
+      data.fullStoryDesc = "اسپاب چی خدمات اسباب‌کشی و حمل اثاثیه منزل را در کنار سرویس وانت بار و نیسان بار برای بارهای سبک و نیمه‌سنگین ارائه می‌دهد. متناسب با حجم بار و نوع جابه‌جایی، خودروی مناسب و نیروی موردنیاز هماهنگ می‌شود تا اثاثیه و بار با دقت و نظم جابه‌جا شوند. برای هماهنگی اسباب‌کشی، حمل اثاثیه، وانت یا نیسان می‌توانید مستقیماً با اسپاب چی تماس بگیرید.";
+      data.topics = data.topics.map((topic, index) => index === 2
+        ? { ...topic, title: "حمل با دقت و مسئولیت‌پذیری", desc: "در تمام مراحل حمل، تلاش تیم اسپاب چی بر جابه‌جایی منظم و با دقت اثاثیه و بار و انتخاب خودروی متناسب با نوع بار است." }
+        : { ...topic, title: topic.title?.replace(/ظریف بار/g, 'اسپاب چی'), desc: topic.desc?.replace(/ظریف بار/g, 'اسپاب چی') });
+    }
+    if (slug === 'storage') {
+      data.pillars = data.pillars.map((pillar, index) => index === 2
+        ? { ...pillar, title: "شرایط شفاف نگهداری", desc: "شرایط نگهداری و جزئیات خدمات انبار پیش از تحویل وسایل با مشتری هماهنگ و شفاف‌سازی می‌شود." }
+        : pillar);
+      data.topics = data.topics.map((topic) => ({ ...topic, title: topic.title?.replace(/ظریف بار/g, 'اسپاب چی'), desc: topic.desc?.replace(/ظریف بار/g, 'اسپاب چی') }));
+    }
+    if (slug === 'packing') {
+      data.materials = data.materials.map((item, index) => index === 3
+        ? { ...item, title: "بسته‌بندی و حمل با دقت", desc: "بسته‌بندی و جابه‌جایی با تمرکز بر دقت، نظم و کاهش احتمال آسیب به وسایل انجام می‌شود.", badge: "دقت در جابه‌جایی" }
+        : item);
+    }
     const activeVideoUrl = loadedVideoUrl || data.videoUrl;
     const pageName = slug === 'packing' 
       ? 'بسته‌بندی حرفه‌ای اثاثیه' 
@@ -534,16 +552,9 @@ export default function ServiceLanding({ slug, onBackToServices, onOpenEstimator
                         className="bg-yellow-400 hover:bg-yellow-500 text-slate-950 px-8 py-3.5 rounded-2xl font-black text-sm shadow-md transition-all flex items-center justify-center gap-2"
                       >
                         <PhoneCall className="w-4 h-4" />
-                        تلفن رزرو: {data.heroPhone}
+                        تلفن تماس: {data.heroPhone}
                       </a>
                     )}
-                    <button 
-                      onClick={onOpenEstimator}
-                      className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-7 py-3 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-                    >
-                      محاسبه آنلاین قیمت
-                      <span>←</span>
-                    </button>
                   </div>
                 </div>
                 <div className="lg:col-span-2 flex justify-center items-center w-full">
@@ -600,16 +611,9 @@ export default function ServiceLanding({ slug, onBackToServices, onOpenEstimator
                       className="bg-yellow-400 hover:bg-yellow-500 text-slate-950 px-8 py-3.5 rounded-2xl font-black text-sm shadow-md transition-all flex items-center justify-center gap-2"
                     >
                       <PhoneCall className="w-4 h-4" />
-                      تلفن رزرو: {data.heroPhone}
+                      تلفن تماس: {data.heroPhone}
                     </a>
                   )}
-                  <button 
-                    onClick={onOpenEstimator}
-                    className="bg-transparent border border-white/30 hover:bg-white/10 text-white px-7 py-3 rounded-2xl font-black text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    محاسبه آنلاین قیمت
-                    <span>←</span>
-                  </button>
                 </div>
               </div>
             )}
@@ -718,13 +722,6 @@ export default function ServiceLanding({ slug, onBackToServices, onOpenEstimator
                 <Phone className="w-4 h-4" />
                 ارتباط با مشاورین: {data.heroPhone}
               </a>
-              <button 
-                onClick={onOpenEstimator}
-                className="bg-transparent border border-white/40 hover:bg-white/10 text-white px-8 py-3.5 rounded-2xl font-bold text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer"
-              >
-                محاسبه قیمت آنلاین
-                <span>←</span>
-              </button>
             </div>
           </div>
         </section>
